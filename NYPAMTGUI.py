@@ -3,6 +3,8 @@ import tkinter as tk
 from PIL import ImageTk,Image
 import os
 
+currentDir = os.getcwd()
+
 root = Tk()
 
 root.title("NYPA Trasformation")
@@ -43,15 +45,18 @@ modeldrop = OptionMenu(root, modelselection, "Exciters", "Machines", "PowerSyste
 modeldrop.pack()
 
 def show():
-	os.system("python ")
-	lbl2 = Label(root, text = "Now simulating Script in: .../OpenIPSLVerification/VerificationRoutines/" + toolselection.get() + "/" + testselection.get() + "/" + testselection.get() + modelselection.get() + toolselection.get() + ".py")
+
+	lbl2 = Label(root, text = "Now simulating Script in: .../OpenIPSLVerification/VerificationRoutines/" + toolselection.get() + "/" + testselection.get() + "/" + testselection.get() + "/" + modelselection.get() + "/" + toolselection.get() + ".py")
 	lbl2.pack()
+
+	lbl3 = Label(root, text = "Current Directory is:" +  currentDir)
+	lbl3.pack()
+
+	os.system("python HelloWorld.py > log.txt")
+	lbl4 = Label(root, text = "Simulation successful! Results can be found in the Working Directory and log.txt file...")
+	lbl4.pack()
 
 button = Button(root, text="Simulate!", font  =("Arial Bold", 13), command = show)
 button.pack(pady = 20)
-
-
-
-
 
 mainloop()
